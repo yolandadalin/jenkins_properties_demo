@@ -32,8 +32,8 @@ dependencies {
     }
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     providedRuntime("org.apache.tomcat.embed:tomcat-embed-jasper")  // 改為 providedRuntime
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
     providedCompile("jakarta.servlet:jakarta.servlet-api:6.0.0")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<Test> {
