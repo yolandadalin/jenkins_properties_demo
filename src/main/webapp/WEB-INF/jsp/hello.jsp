@@ -6,6 +6,6 @@ pageEncoding="UTF-8"%>
     <title>Hello World</title>
   </head>
   <body>
-    <h1>Hello World from JSP! - ${env}</h1>
+    <h1>Hello World from JSP! - ${applicationScope.APP_ENV}</h1>
   </body>
 </html>
