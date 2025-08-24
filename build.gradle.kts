@@ -43,4 +43,7 @@ tasks.withType<Test> {
 tasks.war {
     enabled = true
     archiveFileName.set("hello.war")
+    manifest {
+        attributes["Spring-Profiles-Active"] = project.findProperty("envProfile") ?: "sit"
+    }
 }
