@@ -7,13 +7,13 @@ pipeline {
         ENV_PROFILE = "${params.ENV_PROFILE}"
     }
     tools {
-        jdk 'JDK17' // 對應 Global Tool Configuration 中的 JDK 名稱
-        gradle 'Gradle' // 對應 Gradle 名稱
+        jdk 'JDK17'
+        gradle 'Gradle'
     }
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/yolandadalin/jenkins_properties_demo.git', credentialsId: 'git-credentials' // 替換 URL 和憑證 ID
+                git branch: 'main', url: 'https://github.com/yolandadalin/jenkins_properties_demo.git'
             }
         }
         stage('Build WAR') {
@@ -23,17 +23,7 @@ pipeline {
         }
         stage('Deploy to JBoss') {
             steps {
-                script {
-                    def jbossDeployDir
-                    if (env.ENV_PROFILE == 'sit') {
-                        jbossDeployDir = '~/jboss-eap-8.0-sit/standalone/deployments/'
-                    } else if (env.ENV_PROFILE == 'uat') {
-                        jbossDeployDir = '~/jboss-eap-8.0-uat/standalone/deployments/'
-                    } else {
-                        jbossDeployDir = '~/jboss-eap-8.0-prod/standalone/deployments/'
-                    }
-                    sh "cp build/libs/hello.war ${jbossDeployDir}"
-                }
+                sh 'cp build/libs/hello.war /Users/yolanda/Desktop/jboss-eap-8.0/standalone/deployments/'
             }
         }
     }
